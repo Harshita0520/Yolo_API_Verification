@@ -9,6 +9,7 @@ public class RequestBuilder {
 
     public static RequestSpecification baseRequest( ) {
 
+        BaseApi.init();
         return given()
                 .baseUri(baseURI)
                 .header("Accept", ApiConstants.ACCEPT_JSON)
@@ -18,3 +19,5 @@ public class RequestBuilder {
                 .log().all();
     }
 }
+
+

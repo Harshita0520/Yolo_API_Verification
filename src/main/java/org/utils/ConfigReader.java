@@ -15,7 +15,7 @@ public class ConfigReader {
                             .getResourceAsStream("config/LIVE_Config.properties");
 
             if (inputStream == null) {
-                throw new RuntimeException("STAGE_Config.properties not found in classpath");
+                throw new RuntimeException("Config.properties not found in classpath");
             }
 
             properties.load(inputStream);

@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "http_status_code": {
+          "type": "integer",
+          "enum": [200]
+        }
+      },
+      "required": ["http_status_code"]
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "agent_id": { "type": "integer" },
+
+          "bus_name": { "type": "string" },
+          "source": { "type": "string" },
+          "status": { "type": "string" },
+          "trip_status": { "type": "string" },
+
+          "pnr_number": { "type": "string" },
+          "default_phone": { "type": "string" },
+
+          "origin_name": { "type": "string" },
+          "destination_name": { "type": "string" },
+
+          "journey_date": { "type": "string", "format": "date-time" },
+          "journey_end_date": { "type": "string", "format": "date-time" },
+          "trip_date": { "type": "string" },
+
+          "created_at": { "type": "string" },
+          "cancelled_at": { "type": "string" },
+          "confirmed_at": { "type": ["string", "null"] },
+
+          "coupon": { "type": ["string", "null"] },
+          "coupon_id": { "type": ["integer", "null"] },
+          "coupon_type": { "type": ["string", "null"] },
+
+          "discount": { "type": "number" },
+          "commission": { "type": "number" },
+          "fee": { "type": "number" },
+
+          "final_price": { "type": "number" },
+          "final_tax": { "type": "number" },
+
+          "total_refund": { "type": "number" },
+          "refund_percent": { "type": "number" },
+
+          "total_seats_base_fare": { "type": "number" },
+          "total_seat_tax": { "type": "number" },
+
+          "service_id": { "type": "integer" },
+          "service_name": { "type": "string" },
+
+          "trip_id": { "type": "integer" },
+          "sub_trip_id": { "type": "integer" },
+          "transaction_id": { "type": "integer" },
+          "user_id": { "type": "integer" },
+
+          "id": { "type": "string" },
+
+          "cancel_seat_ids": { "type": "array" },
+          "cancel_seat_numbers": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "seat_ids": { "type": "array" },
+          "shipment_numbers": { "type": "array" },
+
+          "boarding": { "$ref": "#/definitions/hop" },
+          "dropping": { "$ref": "#/definitions/hop" },
+
+          "seats": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer" },
+                "seat_type": { "type": "string" },
+                "seat_sub_type": { "type": ["string", "null"] },
+                "seat_num": { "type": "string" },
+
+                "base_fare": { "type": "number" },
+                "actual_fare": { "type": "number" },
+                "tax": { "type": "number" },
+                "discount": { "type": "number" },
+                "final_price": { "type": "number" },
+
+                "status": { "type": "string" },
+                "reservation_type": { "type": "integer" },
+
+                "created_at": { "type": "string" },
+                "cancelled_at": { "type": ["string", "null"] },
+
+                "refund_amount": { "type": "number" },
+                "refund_percentage": { "type": "number" },
+
+                "is_not_arrived": { "type": "integer" },
+                "convenience_fees": { "type": "integer" },
+                "reddeal_discount": { "type": "number" },
+
+                "onboard_time": { "type": ["string", "null"] },
+
+                "amenities": { "type": "array" },
+
+                "passanger": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "phone": { "type": "string" },
+                    "gender": { "type": "string" },
+                    "age": { "type": "string" },
+                    "email": { "type": ["string", "null"] },
+                    "is_default": { "type": "boolean" },
+                    "is_updated_by_captain": { "type": "integer" }
+                  },
+                  "required": ["name", "phone", "gender", "age"]
+                }
+              },
+              "required": ["id", "seat_num", "seat_type", "final_price", "status"]
+            }
+          }
+        },
+        "required": [
+          "agent_id",
+          "pnr_number",
+          "journey_date",
+          "boarding",
+          "dropping",
+          "seats",
+          "status",
+          "trip_status"
+        ]
+      }
+    }
+  },
+  "required": ["status", "data"],
+
+  "definitions": {
+    "hop": {
+      "type": "object",
+      "properties": {
+        "stop": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" },
+            "area_name": { "type": "string" },
+            "address": { "type": "string" },
+            "latitude": { "type": "string" },
+            "longitude": { "type": "string" },
+            "city": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer" },
+                "name": { "type": "string" },
+                "state": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "name": { "type": "string" }
+                  },
+                  "required": ["id", "name"]
+                }
+              },
+              "required": ["id", "name", "state"]
+            }
+          },
+          "required": ["id", "name", "city"]
+        },
+        "est_arr_time": { "type": "string" },
+        "est_dep_time": { "type": "string" },
+        "day_num": { "type": "integer" },
+        "dep_day_num": { "type": "integer" },
+        "rep_id": { "type": "integer" },
+        "status": { "type": "integer" },
+        "hop_type_detail": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string" },
+              "stop_type": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" }
+                },
+                "required": ["id", "name"]
+              }
+            },
+            "required": ["status", "stop_type"]
+          }
+        }
+      },
+      "required": ["stop", "est_arr_time", "est_dep_time", "hop_type_detail"]
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "http_status_code": {
+          "type": "integer",
+          "enum": [200]
+        }
+      },
+      "required": ["http_status_code"]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "booking_count": {
+          "type": "integer"
+        },
+        "booking_list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "pnr": { "type": "string" },
+              "journey_date": { "type": "string", "format": "date-time" },
+              "default_phone": { "type": "string" },
+              "seat_numbers": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "boarding": {
+                "type": "object",
+                "properties": {
+                  "stop": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "city": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "state": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "integer" },
+                              "name": { "type": "string" }
+                            },
+                            "required": ["id", "name"]
+                          },
+                          "name": { "type": "string" }
+                        },
+                        "required": ["id", "name", "state"]
+                      },
+                      "name": { "type": "string" },
+                      "area_name": { "type": "string" },
+                      "address": { "type": "string" },
+                      "latitude": { "type": "string" },
+                      "longitude": { "type": "string" }
+                    },
+                    "required": ["id", "city", "name"]
+                  },
+                  "est_arr_time": { "type": "string" },
+                  "est_dep_time": { "type": "string" },
+                  "day_num": { "type": "integer" },
+                  "dep_day_num": { "type": "integer" },
+                  "rep_id": { "type": "integer" },
+                  "status": { "type": "integer" },
+                  "hop_type_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "status": { "type": "string" },
+                        "stop_type": {
+                          "type": "object",
+                          "properties": {
+                            "id": { "type": "integer" },
+                            "name": { "type": "string" }
+                          },
+                          "required": ["id", "name"]
+                        }
+                      },
+                      "required": ["status", "stop_type"]
+                    }
+                  }
+                },
+                "required": ["stop", "est_arr_time", "est_dep_time"]
+              },
+              "dropping": {
+                "type": "object",
+                "properties": {
+                  "stop": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "city": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "state": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "integer" },
+                              "name": { "type": "string" }
+                            },
+                            "required": ["id", "name"]
+                          },
+                          "name": { "type": "string" }
+                        },
+                        "required": ["id", "name", "state"]
+                      },
+                      "name": { "type": "string" },
+                      "area_name": { "type": "string" },
+                      "address": { "type": "string" },
+                      "latitude": { "type": "string" },
+                      "longitude": { "type": "string" }
+                    },
+                    "required": ["id", "city", "name"]
+                  },
+                  "est_arr_time": { "type": "string" },
+                  "est_dep_time": { "type": "string" },
+                  "day_num": { "type": "integer" },
+                  "dep_day_num": { "type": "integer" },
+                  "rep_id": { "type": "integer" },
+                  "status": { "type": "integer" },
+                  "hop_type_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "status": { "type": "string" },
+                        "stop_type": {
+                          "type": "object",
+                          "properties": {
+                            "id": { "type": "integer" },
+                            "name": { "type": "string" }
+                          },
+                          "required": ["id", "name"]
+                        }
+                      },
+                      "required": ["status", "stop_type"]
+                    }
+                  }
+                },
+                "required": ["stop", "est_arr_time", "est_dep_time"]
+              },
+              "seats": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "seat_type": { "type": "string" },
+                    "seat_num": { "type": "string" },
+                    "booked_as": { "type": "string" }
+                  },
+                  "required": ["seat_type", "seat_num", "booked_as"]
+                }
+              },
+              "sub_trip_id": { "type": "integer" }
+            },
+            "required": ["id", "pnr", "journey_date", "default_phone", "boarding", "dropping", "seats", "sub_trip_id"]
+          }
+        }
+      },
+      "required": ["booking_count", "booking_list"]
+    }
+  },
+  "required": ["status", "data"]
+}

@@ -18,22 +18,70 @@
       "items": {
         "type": "object",
         "properties": {
-          "trip_id": { "type": "integer", "minimum": 1 },
-          "trip_end_time": { "type": "string", "format": "date-time" },
-          "captain_name": { "type": "string", "minLength": 1 },
-          "service_name": { "type": "string", "minLength": 1 },
-          "base_from_city_name": { "type": "string", "minLength": 1 },
-          "service_start_time": { "type": "string", "pattern": "^([01]\\d|2[0-3]):([0-5]\\d)$" },
-          "available_seats": { "type": "integer", "minimum": 0 },
-          "driver_name": { "type": "string", "minLength": 1 },
-          "subtrip_doj": { "type": "string", "format": "date" },
-          "captain_id": { "type": "integer", "minimum": 1 },
-          "base_to_city_name": { "type": "string", "minLength": 1 },
-          "subtrip_id": { "type": "integer", "minimum": 1 },
-          "template_id": { "type": "integer", "minimum": 1 },
-          "trip_start_time": { "type": "string", "format": "date-time" },
-          "bus_number": { "type": "string", "pattern": "^[A-Z]{2}\\d{1,2}[A-Z]{0,2}\\d{1,4}$" },
-          "total_seats": { "type": "integer", "minimum": 1 }
+          "trip_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "trip_end_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "captain_name": {
+            "type": "string",
+            "minLength": 0
+          },
+          "service_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "base_from_city_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "service_start_time": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):([0-5]\\d)$"
+          },
+          "available_seats": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "driver_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subtrip_doj": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "captain_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "base_to_city_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subtrip_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "template_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "trip_start_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bus_number": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}\\d{1,2}[A-Z]{0,2}\\d{1,4}$"
+          },
+          "total_seats": {
+            "type": "integer",
+            "minimum": 1
+          }
         },
         "required": [
           "trip_id",
