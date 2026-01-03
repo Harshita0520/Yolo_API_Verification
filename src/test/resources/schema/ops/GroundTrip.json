@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["status", "data"],
+  "properties": {
+    "status": {
+      "type": "object",
+      "required": ["http_status_code"],
+      "properties": {
+        "http_status_code": {
+          "type": ["integer", "null"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "required": ["count", "results"],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "driver_id",
+              "trip_id",
+              "trip_end_time",
+              "captain_name",
+              "trip_status",
+              "helper_id",
+              "service_name",
+              "base_from_city_name",
+              "service_start_time",
+              "available_seats",
+              "driver_name",
+              "subtrip_doj",
+              "captain_id",
+              "base_to_city_name",
+              "subtrip_id",
+              "template_id",
+              "trip_start_time",
+              "bus_number",
+              "total_seats",
+              "vehicle_id",
+              "captain_phone_number",
+              "driver1_phone_number",
+              "driver2_phone_number",
+              "driver2_name",
+              "driver2_id",
+              "feeder"
+            ],
+            "properties": {
+              "driver_id": { "type": "integer" },
+              "trip_id": { "type": "integer" },
+              "trip_end_time": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "captain_name": { "type": "string" },
+              "trip_status": { "type": "integer" },
+              "helper_id": { "type": "integer" },
+              "service_name": { "type": "string" },
+              "base_from_city_name": { "type": "string" },
+              "service_start_time": {
+                "type": "string",
+                "pattern": "^\\d{2}:\\d{2}$"
+              },
+              "available_seats": { "type": "integer" },
+              "driver_name": { "type": "string" },
+              "subtrip_doj": {
+                "type": "string",
+                "format": "date"
+              },
+              "captain_id": { "type": "integer" },
+              "base_to_city_name": { "type": "string" },
+              "subtrip_id": { "type": "integer" },
+              "template_id": { "type": "integer" },
+              "trip_start_time": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "bus_number": { "type": "string" },
+              "total_seats": { "type": "integer" },
+              "vehicle_id": { "type": "integer" },
+              "captain_phone_number": { "type": "integer" },
+              "driver1_phone_number": { "type": "integer" },
+              "driver2_phone_number": { "type": "integer" },
+              "driver2_name": { "type": "string" },
+              "driver2_id": { "type": "integer" },
+              "feeder": {
+                "type": "array"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

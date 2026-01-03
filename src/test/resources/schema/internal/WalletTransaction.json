@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "account": {
+            "type": "integer"
+          },
+          "bookId": {
+            "type": ["string", "null"]
+          },
+          "orderId": {
+            "type": ["string", "null"]
+          },
+          "amount": {
+            "type": "integer"
+          },
+          "commission": {
+            "type": "integer"
+          },
+          "detail": {
+            "type": ["string", "null"]
+          },
+          "note": {
+            "type": ["string", "null"]
+          },
+          "app": {
+            "type": "string"
+          },
+          "entity": {
+            "type": "string"
+          },
+          "event": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["DR", "CR"]
+          },
+          "dot": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "code": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "account",
+          "bookId",
+          "orderId",
+          "amount",
+          "commission",
+          "detail",
+          "note",
+          "app",
+          "entity",
+          "event",
+          "type",
+          "dot",
+          "code",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ]
+      }
+    },
+    "next": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": ["data", "next"]
+}

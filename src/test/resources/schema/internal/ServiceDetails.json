@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "id",
+    "frequency",
+    "route",
+    "service_hops",
+    "schedules",
+    "template_name",
+    "start_time",
+    "end_time",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "integer" },
+
+    "frequency": {
+      "type": "array"
+    },
+
+    "route": {
+      "type": "object",
+      "required": ["id", "from_city", "to_city", "name", "distance"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "distance": { "type": "integer" },
+        "from_city": { "$ref": "#/definitions/city" },
+        "to_city": { "$ref": "#/definitions/city" }
+      }
+    },
+
+    "vehicle": { "type": ["object", "null"] },
+
+    "service_amenities": {
+      "type": "array"
+    },
+
+    "service_hops": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/serviceHop" }
+    },
+
+    "crew_info": {
+      "type": "object"
+    },
+
+    "schedules": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/schedule" }
+    },
+
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "deleted_at": { "type": ["string", "null"], "format": "date-time" },
+
+    "template_name": { "type": "string" },
+
+    "start_time": {
+      "type": "string",
+      "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+    },
+    "end_time": {
+      "type": "string",
+      "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+    },
+
+    "duration": { "type": "string" },
+
+    "frequency_type": { "type": ["string", "null"] },
+    "alt_day_num": { "type": ["integer", "null"] },
+
+    "status": { "type": "integer" },
+
+    "driver_id": { "type": ["integer", "null"] },
+    "captain_id": { "type": ["integer", "null"] },
+    "helper_id": { "type": ["integer", "null"] },
+
+    "max_tickets_per_booking": { "type": "integer" },
+
+    "is_cancellable": { "type": "boolean" },
+    "is_partial_cancellable": { "type": "boolean" },
+
+    "validity_from": { "type": "string", "format": "date-time" },
+    "validity_to": { "type": ["string", "null"], "format": "date-time" },
+
+    "version": { "type": "integer" },
+    "added_by": { "type": "integer" },
+    "updated_by": { "type": "integer" },
+
+    "is_extendable": { "type": "boolean" },
+
+    "shadow_service_id": { "type": ["integer", "null"] },
+    "shadow_validity": { "type": ["string", "null"] },
+
+    "via_hops_count": { "type": "integer" },
+    "via_cities_names": { "type": ["string", "null"] },
+
+    "distance": { "type": "integer" },
+
+    "allowed_platforms": {
+      "type": ["array", "null"],
+      "items": { "type": "integer" }
+    },
+
+    "dp_allowed_platforms": { "type": "integer" },
+    "ground_ops_id": { "type": "integer" }
+  },
+
+  "definitions": {
+    "city": {
+      "type": "object",
+      "required": ["id", "name", "latitude", "longitude"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "latitude": { "type": "string" },
+        "longitude": { "type": "string" }
+      }
+    },
+
+    "serviceHop": {
+      "type": "object",
+      "required": ["id", "stop", "hop_type_detail"],
+      "properties": {
+        "id": { "type": "integer" },
+        "stop": { "$ref": "#/definitions/stop" },
+        "hop_type_detail": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/hopTypeDetail" }
+        },
+        "est_arr_time": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+        },
+        "est_dep_time": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+        },
+        "day_num": { "type": "integer" },
+        "dep_day_num": { "type": "integer" },
+        "status": { "type": "integer" },
+        "service_template": { "type": "integer" }
+      }
+    },
+
+    "stop": {
+      "type": "object",
+      "required": ["id", "name", "city", "latitude", "longitude"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "city": { "$ref": "#/definitions/city" },
+        "latitude": { "type": "string" },
+        "longitude": { "type": "string" },
+        "status": { "type": "integer" }
+      }
+    },
+
+    "hopTypeDetail": {
+      "type": "object",
+      "required": ["id", "stop_type"],
+      "properties": {
+        "id": { "type": "integer" },
+        "stop_type": {
+          "type": "object",
+          "required": ["id", "name"],
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" }
+          }
+        },
+        "status": { "type": "integer" }
+      }
+    },
+
+    "schedule": {
+      "type": "object",
+      "required": ["id", "service_schedule", "status"],
+      "properties": {
+        "id": { "type": "integer" },
+        "service_schedule": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer" },
+            "vehicle": { "type": ["object", "null"] },
+            "crew_info": { "type": "object" },
+            "status": { "type": "integer" }
+          }
+        },
+        "status": { "type": "integer" },
+        "is_temporary": { "type": "boolean" }
+      }
+    }
+  },
+
+  "additionalProperties": false
+}

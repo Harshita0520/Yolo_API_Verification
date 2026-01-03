@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "from_city": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "latitude", "longitude"]
+    },
+    "to_city": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "latitude", "longitude"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deleted_at": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": "integer"
+    },
+    "bitla_ref_id": {
+      "type": "integer"
+    },
+    "polyline": {
+      "type": "string"
+    },
+    "distance": {
+      "type": "integer"
+    },
+    "distance_unit": {
+      "type": "string",
+      "enum": ["KM"]
+    },
+    "version": {
+      "type": "integer"
+    },
+    "added_by": {
+      "type": "integer"
+    },
+    "updated_by": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status_from": {
+      "type": ["integer", "null"]
+    },
+    "status_to": {
+      "type": ["integer", "null"]
+    },
+    "status_reason": {
+      "type": "string"
+    },
+    "is_popular": {
+      "type": "integer",
+      "enum": [0, 1]
+    }
+  },
+  "required": [
+    "id",
+    "from_city",
+    "to_city",
+    "name",
+    "created_at",
+    "updated_at",
+    "deleted_at",
+    "status",
+    "bitla_ref_id",
+    "polyline",
+    "distance",
+    "distance_unit",
+    "version",
+    "added_by",
+    "updated_by",
+    "description",
+    "status_from",
+    "status_to",
+    "status_reason",
+    "is_popular"
+  ],
+  "additionalProperties": false
+}

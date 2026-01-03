@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "http_status_code": {
+          "type": "integer",
+          "enum": [200]
+        }
+      },
+      "required": ["http_status_code"],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "registration_number": {
+            "type": "string"
+          },
+          "owner_id": {
+            "type": "integer"
+          },
+          "owner": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": ["string", "null"]
+                  },
+                  "phone_number": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["name", "phone_number"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "registration_number",
+          "owner_id",
+          "owner"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["status", "data"],
+  "additionalProperties": false
+}

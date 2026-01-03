@@ -1,23 +1,18 @@
 package org.utils;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 import io.restassured.specification.RequestSpecification;
 
 public class RequestBuilder {
 
-    public static RequestSpecification baseRequest( ) {
+    public static RequestSpecification baseRequest(ApiType apiType, UserToken userToken) {
 
-        BaseApi.init();
         return given()
-                .baseUri(baseURI)
+                .baseUri(apiType.getBaseUrl())
                 .header("Accept", ApiConstants.ACCEPT_JSON)
                 .header("user-type", ApiConstants.USER_TYPE_INTERNAL)
                 .header("platform", ApiConstants.PLATFORM_INTR)
-                .header("Authorization", "Bearer " +ConfigReader.get("token_internal") )
-                .log().all();
-    }
+                .header("Authorization", userToken.getUserToken());
+        }
 }
-
-

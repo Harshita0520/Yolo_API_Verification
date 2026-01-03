@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["count", "next", "previous", "results"],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": ["string", "null"]
+    },
+    "previous": {
+      "type": ["string", "null"]
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "from_city",
+          "to_city",
+          "name",
+          "created_at",
+          "updated_at",
+          "status",
+          "bitla_ref_id",
+          "polyline",
+          "distance",
+          "distance_unit",
+          "version",
+          "added_by",
+          "updated_by",
+          "description",
+          "is_popular"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "from_city": {
+            "$ref": "#/definitions/city"
+          },
+          "to_city": {
+            "$ref": "#/definitions/city"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": ["string", "null"]
+          },
+          "status": {
+            "type": "integer"
+          },
+          "bitla_ref_id": {
+            "type": "integer"
+          },
+          "polyline": {
+            "type": "string"
+          },
+          "distance": {
+            "type": "integer"
+          },
+          "distance_unit": {
+            "type": "string",
+            "enum": ["KM"]
+          },
+          "version": {
+            "type": "integer"
+          },
+          "added_by": {
+            "type": "integer"
+          },
+          "updated_by": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status_from": {
+            "type": ["string", "null"]
+          },
+          "status_to": {
+            "type": ["string", "null"]
+          },
+          "status_reason": {
+            "type": ["string", "null"]
+          },
+          "is_popular": {
+            "type": "integer",
+            "enum": [0, 1]
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "city": {
+      "type": "object",
+      "required": ["id", "name", "latitude", "longitude"],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

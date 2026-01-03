@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["status", "data"],
+  "properties": {
+    "status": {
+      "type": "object",
+      "required": ["http_status_code"],
+      "properties": {
+        "http_status_code": {
+          "type": "integer",
+          "enum": [200]
+        }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["_source"],
+        "properties": {
+          "_source": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "roles",
+              "role_names",
+              "email",
+              "phone_code",
+              "phone_number",
+              "user_status"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1
+              },
+              "role_names": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "phone_code": {
+                "type": "string",
+                "pattern": "^\\+\\d{1,3}$"
+              },
+              "phone_number": {
+                "type": "integer"
+              },
+              "user_status": {
+                "type": "string",
+                "enum": ["Active", "Inactive"]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "http_status_code": {
+          "type": "integer"
+        }
+      },
+      "required": ["http_status_code"]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]{2})$"
+        },
+        "creditLine": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]{2})$"
+        },
+        "wType": {
+          "type": "integer"
+        }
+      },
+      "required": ["amount", "creditLine", "wType"]
+    }
+  },
+  "required": ["status", "data"]
+}

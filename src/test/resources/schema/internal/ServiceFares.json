@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["count", "next", "previous", "results"],
+  "properties": {
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "next": {
+      "type": ["string", "null"],
+      "format": "uri"
+    },
+    "previous": {
+      "type": ["string", "null"],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "service",
+          "st_fare",
+          "sl_fare",
+          "dl_fare",
+          "su_fare",
+          "du_fare",
+          "fare_type",
+          "service_id",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "service": {
+            "type": "object",
+            "required": ["id", "template_name"],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "template_name": {
+                "type": "string"
+              }
+            }
+          },
+          "st_fare": {
+            "type": ["string", "null"]
+          },
+          "sl_fare": {
+            "type": "string",
+            "pattern": "^[0-9]+(\\.[0-9]{2})?$"
+          },
+          "dl_fare": {
+            "type": "string",
+            "pattern": "^[0-9]+(\\.[0-9]{2})?$"
+          },
+          "su_fare": {
+            "type": "string",
+            "pattern": "^[0-9]+(\\.[0-9]{2})?$"
+          },
+          "du_fare": {
+            "type": "string",
+            "pattern": "^[0-9]+(\\.[0-9]{2})?$"
+          },
+          "fare_type": {
+            "type": "integer"
+          },
+          "service_id": {
+            "type": "integer"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

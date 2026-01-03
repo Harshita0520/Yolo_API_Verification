@@ -1,0 +1,241 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["status", "data"],
+  "properties": {
+    "status": {
+      "type": "object",
+      "required": ["http_status_code"],
+      "properties": {
+        "http_status_code": {
+          "type": "integer",
+          "enum": [200]
+        }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pnr_details"],
+        "properties": {
+          "pnr_details": {
+            "type": "object",
+            "required": [
+              "_id",
+              "added_by",
+              "boarding",
+              "dropping",
+              "bus_name",
+              "created_at",
+              "journey_date",
+              "journey_end_date",
+              "pnr_number",
+              "seats",
+              "service_id",
+              "service_name",
+              "status",
+              "trip_id",
+              "user_id"
+            ],
+            "properties": {
+              "_id": { "type": "string" },
+              "added_by": { "type": "integer" },
+              "agent_id": { "type": "integer" },
+
+              "boarding": { "$ref": "#/definitions/hop" },
+              "dropping": { "$ref": "#/definitions/hop" },
+
+              "bus_name": { "type": "string" },
+              "cancel_seat_ids": { "type": "array" },
+              "cancel_seat_numbers": { "type": "array" },
+              "cancelled_at": { "type": ["string", "null"] },
+
+              "commission": { "type": "number" },
+              "confirmed_at": { "type": ["string", "null"] },
+              "coupon": { "type": ["string", "null"] },
+              "coupon_id": { "type": ["integer", "null"] },
+              "coupon_type": { "type": ["string", "null"] },
+
+              "created_at": { "type": "string" },
+              "updated_at": { "type": "string" },
+
+              "default_phone": { "type": "string" },
+              "origin_name": { "type": "string" },
+              "destination_name": { "type": "string" },
+
+              "discount": { "type": "number" },
+              "fee": { "type": "number" },
+
+              "final_price": { "type": "number" },
+              "final_tax": { "type": "number" },
+
+              "journey_date": { "type": "string" },
+              "journey_end_date": { "type": "string" },
+
+              "pnr_number": { "type": "string" },
+
+              "seat_ids": { "type": "array" },
+              "seat_numbers": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+
+              "seats": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "seat_type",
+                    "seat_num",
+                    "base_fare",
+                    "actual_fare",
+                    "tax",
+                    "final_price",
+                    "status",
+                    "passanger"
+                  ],
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "seat_type": { "type": "string" },
+                    "seat_sub_type": { "type": ["string", "null"] },
+                    "seat_num": { "type": "string" },
+
+                    "base_fare": { "type": "number" },
+                    "actual_fare": { "type": "number" },
+                    "tax": { "type": "number" },
+                    "discount": { "type": "number" },
+                    "final_price": { "type": "number" },
+
+                    "reservation_type": { "type": "integer" },
+                    "status": { "type": "string" },
+
+                    "created_at": { "type": "string" },
+                    "cancelled_at": { "type": ["string", "null"] },
+
+                    "passanger": {
+                      "type": "object",
+                      "required": ["name", "phone", "gender", "age"],
+                      "properties": {
+                        "name": { "type": "string" },
+                        "phone": { "type": "string" },
+                        "gender": { "type": "string" },
+                        "age": { "type": "string" },
+                        "email": { "type": ["string", "null"] },
+                        "is_default": { "type": "boolean" },
+                        "is_updated_by_captain": { "type": "integer" }
+                      },
+                      "additionalProperties": false
+                    },
+
+                    "amenities": { "type": "array" },
+                    "onboard_time": { "type": ["string", "null"] },
+                    "is_not_arrived": { "type": "integer" },
+                    "convenience_fees": { "type": "number" },
+                    "reddeal_discount": { "type": "number" }
+                  },
+                  "additionalProperties": false
+                }
+              },
+
+              "service_id": { "type": "integer" },
+              "service_name": { "type": "string" },
+
+              "shipment_numbers": { "type": "array" },
+              "source": { "type": "string" },
+              "status": { "type": "string" },
+
+              "sub_trip_id": { "type": "integer" },
+
+              "total_amenities_base_fare": { "type": "number" },
+              "total_amenities_tax": { "type": "number" },
+              "total_refund": { "type": ["number", "null"] },
+
+              "total_seat_tax": { "type": "number" },
+              "total_seats_base_fare": { "type": "number" },
+
+              "transaction_id": { "type": "integer" },
+
+              "trip_date": { "type": "string" },
+              "trip_id": { "type": "integer" },
+
+              "updated_by": { "type": "integer" },
+              "user_id": { "type": "integer" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "definitions": {
+    "hop": {
+      "type": "object",
+      "required": ["stop", "status", "hop_type_detail"],
+      "properties": {
+        "stop": {
+          "type": "object",
+          "required": ["id", "city", "name"],
+          "properties": {
+            "id": { "type": "integer" },
+            "city": {
+              "type": "object",
+              "required": ["id", "state", "name"],
+              "properties": {
+                "id": { "type": "integer" },
+                "state": {
+                  "type": "object",
+                  "required": ["id", "name"],
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "name": { "type": "string" }
+                  },
+                  "additionalProperties": false
+                },
+                "name": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "name": { "type": "string" },
+            "area_name": { "type": "string" },
+            "address": { "type": "string" },
+            "latitude": { "type": "string" },
+            "longitude": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "est_arr_time": { "type": "string" },
+        "est_dep_time": { "type": "string" },
+        "day_num": { "type": "integer" },
+        "dep_day_num": { "type": "integer" },
+        "rep_id": { "type": "integer" },
+        "status": { "type": "integer" },
+        "hop_type_detail": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["status", "stop_type"],
+            "properties": {
+              "status": { "type": "string" },
+              "stop_type": {
+                "type": "object",
+                "required": ["id", "name"],
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

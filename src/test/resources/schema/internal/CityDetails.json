@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "id",
+    "state",
+    "created_at",
+    "updated_at",
+    "name",
+    "status",
+    "bitla_ref_id",
+    "latitude",
+    "longitude",
+    "version",
+    "added_by",
+    "updated_by",
+    "description",
+    "weightage"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "state": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "deleted_at": {
+      "type": ["string", "null"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "bitla_ref_id": {
+      "type": "integer"
+    },
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "added_by": {
+      "type": "integer"
+    },
+    "updated_by": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "weightage": {
+      "type": "integer"
+    },
+    "tags": {
+      "type": ["string", "null"],
+      "description": "JSON string representing tags array"
+    }
+  }
+}

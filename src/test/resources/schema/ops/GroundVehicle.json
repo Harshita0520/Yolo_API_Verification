@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["count", "next", "previous", "results"],
+  "properties": {
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "next": {
+      "type": ["string", "null"]
+    },
+    "previous": {
+      "type": ["string", "null"]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "vehicle_type",
+          "model",
+          "state",
+          "coach_layout",
+          "created_at",
+          "updated_at",
+          "deleted_at",
+          "name",
+          "registration_number",
+          "chassis_number",
+          "registration_date",
+          "fuel_type_id",
+          "vehicle_color_id",
+          "rc_validity_date",
+          "is_state_registered",
+          "manufacture_year",
+          "fuel_tank_capacity",
+          "fuel_tank_type",
+          "fuel_tank_measurement",
+          "run_km",
+          "owner_id",
+          "veh_cost_per_km",
+          "veh_score",
+          "funnel_status",
+          "version",
+          "added_by",
+          "updated_by",
+          "axle_type",
+          "mg_type",
+          "mg_per_seat",
+          "ticket_revenue_share",
+          "non_ticket_revenue_share",
+          "obd",
+          "revenue_share",
+          "profit_share"
+        ],
+        "properties": {
+          "id": { "type": "integer" },
+          "status": { "type": "string" },
+
+          "vehicle_type": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+
+          "model": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+
+          "state": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+
+          "coach_layout": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleted_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+
+          "name": { "type": "string" },
+          "name_meta": { "type": ["string", "null"] },
+          "name_paytm": { "type": ["string", "null"] },
+          "name_redbus": { "type": ["string", "null"] },
+
+          "registration_number": { "type": "string" },
+          "chassis_number": { "type": "string" },
+          "registration_date": {
+            "type": "string",
+            "format": "date"
+          },
+
+          "fuel_type_id": { "type": "integer" },
+          "vehicle_color_id": { "type": "integer" },
+
+          "rc_validity_date": {
+            "type": "string",
+            "format": "date"
+          },
+
+          "is_state_registered": { "type": "boolean" },
+          "manufacture_year": { "type": "integer" },
+
+          "fuel_tank_capacity": { "type": "number" },
+          "fuel_tank_type": { "type": "integer" },
+          "fuel_tank_measurement": { "type": "integer" },
+
+          "run_km": { "type": "number" },
+          "owner_id": { "type": "integer" },
+
+          "veh_cost_per_km": { "type": "number" },
+          "veh_score": { "type": "number" },
+
+          "funnel_status": { "type": "integer" },
+          "version": { "type": "integer" },
+
+          "added_by": { "type": "integer" },
+          "updated_by": { "type": "integer" },
+
+          "axle_type": { "type": "integer" },
+          "mg_type": { "type": "integer" },
+
+          "mg_per_seat": { "type": "number" },
+          "ticket_revenue_share": { "type": "number" },
+          "non_ticket_revenue_share": { "type": "number" },
+
+          "obd": { "type": ["string", "null"] },
+
+          "revenue_share": { "type": "number" },
+          "profit_share": { "type": "number" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

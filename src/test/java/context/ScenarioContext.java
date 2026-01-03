@@ -13,4 +13,8 @@ public class ScenarioContext {
     public void setResponse(Response response) {
         this.response = response;
     }
+
+    public void clear() {
+        response = null;
+    }
 }

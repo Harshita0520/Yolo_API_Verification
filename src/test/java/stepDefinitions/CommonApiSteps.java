@@ -35,8 +35,8 @@ public class CommonApiSteps {
         assertEquals(statusCode.intValue(), response.getStatusCode());
     }
 
-    @And("the response should match the {string} JSON schema")
-    public void the_response_should_match_the_json_schema(String schemaName) {
+    @And("the {string} Api response should match the {string} JSON schema")
+    public void the_response_should_match_the_json_schema(String option,String schemaName) {
 
         Response response = scenarioContext.getResponse();
         assertNotNull("Response is null. Cannot validate schema.", response);
@@ -44,7 +44,7 @@ public class CommonApiSteps {
         response.then()
                 .assertThat()
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(
-                        "schema/" + schemaName + ".json"
+                        "schema/"+option+"/"+ schemaName + ".json"
                 ));
 
         System.out.println("✅ JSON schema validation passed for: " + schemaName);

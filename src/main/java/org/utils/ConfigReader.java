@@ -12,7 +12,7 @@ public class ConfigReader {
             InputStream inputStream =
                     ConfigReader.class
                             .getClassLoader()
-                            .getResourceAsStream("config/LIVE_Config.properties");
+                            .getResourceAsStream("config/STAGE_Config.properties");
 
             if (inputStream == null) {
                 throw new RuntimeException("Config.properties not found in classpath");

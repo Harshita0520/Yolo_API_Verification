@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["status", "data"],
+  "properties": {
+    "status": {
+      "type": "object",
+      "required": ["http_status_code"],
+      "properties": {
+        "http_status_code": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/booking" }
+    }
+  },
+  "additionalProperties": false,
+
+  "definitions": {
+    "booking": {
+      "type": "object",
+      "required": [
+        "id",
+        "trip_id",
+        "sub_trip_id",
+        "service_id",
+        "service_name",
+        "bus_name",
+        "status",
+        "source",
+        "origin_name",
+        "destination_name",
+        "trip_date",
+        "journey_date",
+        "journey_end_date",
+        "seat_numbers",
+        "final_price",
+        "user_id",
+        "seats",
+        "boarding",
+        "dropping"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+
+        "trip_id": { "type": "integer" },
+        "sub_trip_id": { "type": "integer" },
+        "service_id": { "type": "integer" },
+        "service_name": { "type": "string" },
+        "bus_name": { "type": "string" },
+
+        "status": { "type": "string" },
+
+        "transaction_id": { "type": ["string", "null"] },
+        "source": { "type": "string" },
+
+        "origin_name": { "type": "string" },
+        "destination_name": { "type": "string" },
+
+        "trip_date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+        },
+
+        "journey_date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}$"
+        },
+
+        "journey_end_date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}$"
+        },
+
+        "seat_numbers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "cancel_seat_numbers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "cancel_seat_ids": {
+          "type": "array",
+          "items": { "type": "integer" }
+        },
+
+        "final_price": { "type": "string" },
+        "total_seats_base_fare": { "type": "string" },
+        "total_amenities_base_fare": { "type": "integer" },
+        "total_seat_tax": { "type": "integer" },
+        "total_amenities_tax": { "type": "integer" },
+        "fee": { "type": "integer" },
+        "final_tax": { "type": "integer" },
+
+        "user_id": { "type": "integer" },
+        "agent_id": { "type": "integer" },
+        "default_phone": { "type": "string" },
+
+        "added_by": { "type": "integer" },
+        "updated_by": { "type": "integer" },
+
+        "seats": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/seat" }
+        },
+
+        "boarding": { "$ref": "#/definitions/hop" },
+        "dropping": { "$ref": "#/definitions/hop" },
+
+        "discount": { "type": "integer" },
+        "coupon_id": { "type": ["integer", "null"] },
+        "coupon_type": { "type": ["string", "null"] },
+
+        "session": { "type": "number" },
+        "end": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+
+    "seat": {
+      "type": "object",
+      "required": [
+        "id",
+        "seat_num",
+        "base_fare",
+        "actual_fare",
+        "tax",
+        "discount",
+        "final_price",
+        "status",
+        "seat_type"
+      ],
+      "properties": {
+        "id": { "type": "integer" },
+        "seat_num": { "type": "string" },
+        "base_fare": { "type": "string" },
+        "actual_fare": { "type": "string" },
+        "tax": { "type": "integer" },
+        "discount": { "type": "integer" },
+        "final_price": { "type": "string" },
+        "reservation_type": { "type": "integer" },
+        "status": { "type": "string" },
+        "amenities": { "type": "array" },
+        "seat_type": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "hop": {
+      "type": "object",
+      "required": [
+        "stop",
+        "est_arr_time",
+        "est_dep_time",
+        "day_num",
+        "dep_day_num",
+        "status"
+      ],
+      "properties": {
+        "stop": { "$ref": "#/definitions/stop" },
+        "est_arr_time": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+        },
+        "est_dep_time": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+        },
+        "day_num": { "type": "integer" },
+        "dep_day_num": { "type": "integer" },
+        "rep_id": { "type": "integer" },
+        "status": { "type": "integer" },
+        "hop_type_detail": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["status", "stop_type"],
+            "properties": {
+              "status": { "type": "string" },
+              "stop_type": {
+                "type": "object",
+                "required": ["id", "name"],
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" }
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "stop": {
+      "type": "object",
+      "required": [
+        "id",
+        "city",
+        "name",
+        "area_name",
+        "address",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "id": { "type": "integer" },
+        "city": {
+          "type": "object",
+          "required": ["id", "name", "state"],
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" },
+            "state": {
+              "type": "object",
+              "required": ["id", "name"],
+              "properties": {
+                "id": { "type": "integer" },
+                "name": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "name": { "type": "string" },
+        "area_name": { "type": "string" },
+        "address": { "type": "string" },
+        "latitude": { "type": "string" },
+        "longitude": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

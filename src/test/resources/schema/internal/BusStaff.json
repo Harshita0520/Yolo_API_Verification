@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "http_status_code": {
+          "type": "integer"
+        }
+      },
+      "required": ["http_status_code"]
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_source": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "role_names": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "phone_code": {
+                "type": "string"
+              },
+              "phone_number": {
+                "type": "integer"
+              },
+              "user_status": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "name", "roles", "role_names", "phone_code", "phone_number", "user_status"]
+          }
+        },
+        "required": ["_source"]
+      }
+    }
+  },
+  "required": ["status", "data"]
+}

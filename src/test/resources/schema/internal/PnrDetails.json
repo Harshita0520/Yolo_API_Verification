@@ -12,6 +12,7 @@
       },
       "required": ["http_status_code"]
     },
+
     "data": {
       "type": "array",
       "items": {
@@ -21,21 +22,42 @@
 
           "bus_name": { "type": "string" },
           "source": { "type": "string" },
-          "status": { "type": "string" },
-          "trip_status": { "type": "string" },
 
-          "pnr_number": { "type": "string" },
-          "default_phone": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["CONFIRM", "CANCEL", "COMPLETED", "CONFLICT"]
+          },
+          "trip_status": {
+            "type": "string",
+            "enum": ["UPCOMING", "LIVE", "CANCEL", "COMPLETED", "CONFLICT"]
+          },
+
+          "pnr_number": {
+            "type": "string",
+            "pattern": "^[A-Z0-9]{10,15}$"
+          },
+          "default_phone": {
+            "type": "string",
+            "pattern": "^[0-9]{10}$"
+          },
 
           "origin_name": { "type": "string" },
           "destination_name": { "type": "string" },
 
-          "journey_date": { "type": "string", "format": "date-time" },
-          "journey_end_date": { "type": "string", "format": "date-time" },
-          "trip_date": { "type": "string" },
-
+          "journey_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "journey_end_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trip_date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
+          },
           "created_at": { "type": "string" },
-          "cancelled_at": { "type": "string" },
+          "cancelled_at": { "type": ["string", "null"] },
           "confirmed_at": { "type": ["string", "null"] },
 
           "coupon": { "type": ["string", "null"] },
@@ -49,7 +71,7 @@
           "final_price": { "type": "number" },
           "final_tax": { "type": "number" },
 
-          "total_refund": { "type": "number" },
+          "total_refund": { "type": ["number", "null"] },
           "refund_percent": { "type": "number" },
 
           "total_seats_base_fare": { "type": "number" },
@@ -98,11 +120,11 @@
                 "created_at": { "type": "string" },
                 "cancelled_at": { "type": ["string", "null"] },
 
-                "refund_amount": { "type": "number" },
+                "refund_amount": { "type": ["number", "null"] },
                 "refund_percentage": { "type": "number" },
 
                 "is_not_arrived": { "type": "integer" },
-                "convenience_fees": { "type": "integer" },
+                "convenience_fees": { "type": "number" },
                 "reddeal_discount": { "type": "number" },
 
                 "onboard_time": { "type": ["string", "null"] },
@@ -113,7 +135,10 @@
                   "type": "object",
                   "properties": {
                     "name": { "type": "string" },
-                    "phone": { "type": "string" },
+                    "phone": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10}$"
+                    },
                     "gender": { "type": "string" },
                     "age": { "type": "string" },
                     "email": { "type": ["string", "null"] },
@@ -123,10 +148,17 @@
                   "required": ["name", "phone", "gender", "age"]
                 }
               },
-              "required": ["id", "seat_num", "seat_type", "final_price", "status"]
+              "required": [
+                "id",
+                "seat_num",
+                "seat_type",
+                "final_price",
+                "status"
+              ]
             }
           }
         },
+
         "required": [
           "agent_id",
           "pnr_number",
@@ -140,6 +172,7 @@
       }
     }
   },
+
   "required": ["status", "data"],
 
   "definitions": {
@@ -155,6 +188,7 @@
             "address": { "type": "string" },
             "latitude": { "type": "string" },
             "longitude": { "type": "string" },
+
             "city": {
               "type": "object",
               "properties": {
@@ -174,12 +208,14 @@
           },
           "required": ["id", "name", "city"]
         },
+
         "est_arr_time": { "type": "string" },
         "est_dep_time": { "type": "string" },
         "day_num": { "type": "integer" },
         "dep_day_num": { "type": "integer" },
         "rep_id": { "type": "integer" },
         "status": { "type": "integer" },
+
         "hop_type_detail": {
           "type": "array",
           "items": {
@@ -199,7 +235,16 @@
           }
         }
       },
-      "required": ["stop", "est_arr_time", "est_dep_time", "hop_type_detail"]
+
+      "required": [
+        "stop",
+        "est_arr_time",
+        "est_dep_time",
+        "day_num",
+        "dep_day_num",
+        "status",
+        "hop_type_detail"
+      ]
     }
   }
 }

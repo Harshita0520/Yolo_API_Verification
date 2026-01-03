@@ -1,0 +1,222 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["status", "data"],
+  "properties": {
+    "status": {
+      "type": "object",
+      "required": ["http_status_code"],
+      "properties": {
+        "http_status_code": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+
+    "data": {
+      "type": "object",
+      "required": [
+        "subtrip_id",
+        "trip_id",
+        "origin",
+        "destination",
+        "service_amenities",
+        "duration",
+        "status",
+        "layout",
+        "vehicle_amenities",
+        "trip_doj",
+        "service_id",
+        "service_name"
+      ],
+      "properties": {
+        "subtrip_id": { "type": "integer" },
+        "trip_id": { "type": "integer" },
+
+        "origin": { "$ref": "#/definitions/locationWithBoarding" },
+        "destination": { "$ref": "#/definitions/locationWithDropping" },
+
+        "service_amenities": {
+          "type": "array"
+        },
+
+        "duration": { "type": "integer" },
+        "status": { "type": "integer" },
+
+        "layout": {
+          "type": "object",
+          "required": ["id", "coach_seats", "name", "num_row", "num_col"],
+          "properties": {
+            "id": { "type": "integer" },
+            "coach_seats": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/seat" }
+            },
+            "name": { "type": "string" },
+            "num_row": { "type": "integer" },
+            "num_col": { "type": "integer" },
+            "redbus": { "type": "string" },
+            "paytm": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+
+        "vehicle_amenities": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/vehicleAmenity" }
+        },
+
+        "trip_doj": {
+          "type": "string",
+          "format": "date"
+        },
+
+        "service_id": { "type": "integer" },
+        "service_name": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+
+  "definitions": {
+    "locationWithBoarding": {
+      "type": "object",
+      "required": ["id", "name", "boarding_points"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "boarding_points": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/point" }
+        }
+      }
+    },
+
+    "locationWithDropping": {
+      "type": "object",
+      "required": ["id", "name", "dropping_points"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "dropping_points": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/point" }
+        }
+      }
+    },
+
+    "point": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "area_name",
+        "address",
+        "latitude",
+        "longitude",
+        "est_arr_time",
+        "est_dep_time",
+        "day_num",
+        "dep_day_num",
+        "city"
+      ],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "area_name": { "type": "string" },
+        "address": { "type": "string" },
+        "latitude": { "type": "string" },
+        "longitude": { "type": "string" },
+        "est_arr_time": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+        },
+        "est_dep_time": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+        },
+        "day_num": { "type": "integer" },
+        "dep_day_num": { "type": "integer" },
+        "city": { "$ref": "#/definitions/city" }
+      }
+    },
+
+    "city": {
+      "type": "object",
+      "required": ["id", "name", "state"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "state": {
+          "type": "object",
+          "required": ["id", "name"],
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "seat": {
+      "type": "object",
+      "required": [
+        "id",
+        "col",
+        "row",
+        "z_index",
+        "seat_type",
+        "seat_num",
+        "is_ladies",
+        "view_seat_type",
+        "view_seat_height",
+        "view_seat_width"
+      ],
+      "properties": {
+        "id": { "type": "integer" },
+        "col": { "type": "integer" },
+        "row": { "type": "integer" },
+        "z_index": { "type": "integer" },
+        "seat_type": { "type": "string" },
+        "seat_num": { "type": "string" },
+        "is_ladies": { "type": "boolean" },
+        "view_seat_type": { "type": "string" },
+        "view_seat_height": { "type": "integer" },
+        "view_seat_width": { "type": "integer" }
+      }
+    },
+
+    "vehicleAmenity": {
+      "type": "object",
+      "required": ["id", "amenity", "status", "vehicle"],
+      "properties": {
+        "id": { "type": "integer" },
+        "amenity": {
+          "type": "object",
+          "required": ["id", "name", "icon_name", "owned_by", "is_global"],
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" },
+            "icon_name": { "type": "string" },
+            "owned_by": { "type": "integer" },
+            "is_global": { "type": "boolean" }
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deleted_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "status": { "type": "integer" },
+        "vehicle": { "type": "integer" }
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "coach_seats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleted_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+
+          "col": { "type": "integer", "minimum": 0 },
+          "row": { "type": "integer", "minimum": 0 },
+          "z_index": { "type": "integer", "minimum": 0 },
+
+          "seat_type": { "type": "string" },
+          "seat_sub_type": {
+            "type": ["string", "null"]
+          },
+          "seat_num": { "type": "string" },
+
+          "is_ladies": { "type": "boolean" },
+
+          "view_seat_type": { "type": "string" },
+          "view_seat_height": { "type": "integer", "minimum": 1 },
+          "view_seat_width": { "type": "integer", "minimum": 1 },
+
+          "bitla_ref_id": { "type": "integer" },
+
+          "layout": {
+            "type": ["integer", "null"]
+          },
+          "seat_position": {
+            "type": ["string", "null"]
+          },
+
+          "version": { "type": "integer" },
+          "added_by": { "type": "integer" },
+          "updated_by": { "type": "integer" },
+          "coach": { "type": "integer" }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "updated_at",
+          "col",
+          "row",
+          "z_index",
+          "seat_type",
+          "seat_num",
+          "is_ladies",
+          "view_seat_type",
+          "view_seat_height",
+          "view_seat_width",
+          "bitla_ref_id",
+          "version",
+          "added_by",
+          "updated_by",
+          "coach"
+        ]
+      }
+    }
+  },
+  "required": ["id", "coach_seats"]
+}
